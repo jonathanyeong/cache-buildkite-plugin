@@ -5,6 +5,8 @@ if [ -z "${BUILDKITE_PLUGIN_S3_CACHE_BUCKET}" ]; then
   exit 1
 fi
 
+apt-get update -qq && apt-get install -qq -y --no-install-recommends awscli
+
 build_key() {
   if [ -n "${BUILDKITE_PLUGIN_S3_CACHE_PREFIX}" ]; then
     echo "${BUILDKITE_PLUGIN_S3_CACHE_PREFIX}/${1}"
