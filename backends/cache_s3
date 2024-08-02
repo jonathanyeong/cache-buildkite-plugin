@@ -6,21 +6,24 @@ if [ -z "${BUILDKITE_PLUGIN_S3_CACHE_BUCKET}" ]; then
 fi
 
 echo "Installing awscli"
-architecture=$(uname -m)
-if [ "$architecture" == "x86_64" ]; then
-    echo "Running on x86_64 architecture"
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install
-elif [ "$architecture" == "aarch64" ]; then
-    echo "Running on aarch64 architecture"
-    curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
-    unzip awscliv2.zip
-    sudo ./aws/install
-else
-    echo "Unknown architecture: $architecture"
-    exit 1
-fi
+uname -a
+# if [ ! "awscliv2.zip" ]; then
+#   architecture=$(uname -m)
+#   if [ "$architecture" == "x86_64" ]; then
+#       echo "Running on x86_64 architecture"
+#       curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+#       unzip awscliv2.zip
+#       ./aws/install
+#   elif [ "$architecture" == "aarch64" ]; then
+#       echo "Running on aarch64 architecture"
+#       curl "https://awscli.amazonaws.com/awscli-exe-linux-aarch64.zip" -o "awscliv2.zip"
+#       unzip awscliv2.zip
+#       ./aws/install
+#   else
+#       echo "Unknown architecture: $architecture"
+#       exit 1
+#   fi
+# fi
 
 
 build_key() {
